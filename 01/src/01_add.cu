@@ -18,7 +18,7 @@ int main()
 	// 将数据拷贝至GPU
 	cudaMemcpy(d_a, &h_a, sizeof(int), cudaMemcpyHostToDevice);
 	cudaMemcpy(d_b, &h_b, sizeof(int), cudaMemcpyHostToDevice);
-	// 调用GPU函数
+	// 调用GPU函数，这里描述的是一个grid，包含1个block，每个block里有1个线程，然后根据上面开辟的内存分配grid的数量
 	gpuAdd <<<1, 1>>> (d_a, d_b, d_c);	
 	// 从GPU取回数据
 	cudaMemcpy(&h_c, d_c, sizeof(int), cudaMemcpyDeviceToHost); 
